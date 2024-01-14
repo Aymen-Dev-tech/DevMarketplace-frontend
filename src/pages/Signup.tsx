@@ -10,7 +10,9 @@ import {
   Radio,
 } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
+import { useEffect } from "react";
 type FormValues = {
+  exp: string;
   phoneNumber: string;
   role: string;
 };
@@ -19,19 +21,36 @@ export default function Signup() {
   //form state
   const form = useForm<FormValues>({
     defaultValues: {
+      exp: "",
       phoneNumber: "",
       role: "",
     },
   });
   // destructor register function
-  const { register, handleSubmit, formState, control } = form;
+  const { register, unregister, handleSubmit, formState, control, watch } =
+    form;
+  const watchRole = watch("role");
   //mange form submittion
+  useEffect(() => {
+    if (watchRole === "seller") {
+      register("exp");
+    } else {
+      unregister("exp");
+    }
+  }, [register, unregister, watchRole]);
   const onSubmit = async (data: FormValues) => {
     console.log(data);
-    window.open(
-      `/api/auth/google?info[phoneNumber]=${data.phoneNumber}&info[role]=${data.role}`,
-      "_self"
-    );
+    if (watchRole === "seller") {
+      window.open(
+        `/api/auth/google?info[phoneNumber]=${data.phoneNumber}&info[role]=${data.role}&info[exp]=${data.exp}`,
+        "_self"
+      );
+    } else {
+      window.open(
+        `/api/auth/google?info[phoneNumber]=${data.phoneNumber}&info[role]=${data.role}`,
+        "_self"
+      );
+    }
   };
   //validation
   const { errors } = formState;
@@ -68,6 +87,24 @@ export default function Signup() {
           )}
 
           <Stack direction={"column"} spacing={2}>
+            {watchRole === "seller" && (
+              <>
+                <FormLabel> Experience </FormLabel>
+                <TextField
+                  error={!!errors.exp}
+                  helperText={errors.exp?.message}
+                  type="text"
+                  placeholder="E.g., Software Developer"
+                  {...register("exp", {
+                    required: "exp required",
+                    pattern: {
+                      value: /^[a-zA-Z\s]+$/,
+                      message: "Invalid inpute",
+                    },
+                  })}
+                />
+              </>
+            )}
             <FormLabel>Phone Number</FormLabel>
             <TextField
               error={!!errors.phoneNumber}
