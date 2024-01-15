@@ -1,20 +1,48 @@
-import { createContext, useState } from "react";
-import { ReactNode } from "react";
-type LayoutProps = {
-  children: ReactNode;
-};
-type IAuthContext = {
-  auth: boolean,
-  setAuth: (newState: boolean) => void
-};
-const initValue = {
-  auth: false,
-  setAuth: () => {}
-}
-const AuthContext = createContext<IAuthContext>(initValue);
+import React, {
+  createContext,
+  ReactNode,
+  useState,
+  Dispatch,
+  SetStateAction,
+} from "react";
 
-export const AuthProvider = ({ children }: LayoutProps) => {
-  const [auth, setAuth] = useState(initValue.auth);
+type ProfileResponse = {
+  id?: number;
+  name: string;
+  phoneNumber: string;
+  email: string;
+  profilePicture: string;
+  Seller?:
+    | {
+        id: number;
+      }
+    | undefined;
+  Buyer?:
+    | {
+        id: number;
+      }
+    | undefined;
+};
+
+export interface AuthContextProps {
+  auth: ProfileResponse;
+  setAuth: Dispatch<SetStateAction<ProfileResponse>>;
+}
+
+const AuthContext = createContext<AuthContextProps | undefined>(undefined);
+
+interface AuthProviderProps {
+  children: ReactNode;
+}
+
+export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+  const [auth, setAuth] = useState<ProfileResponse>({
+    id: 0,
+    name: "",
+    phoneNumber: "",
+    email: "",
+    profilePicture: "",
+  });
 
   return (
     <AuthContext.Provider value={{ auth, setAuth }}>

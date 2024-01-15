@@ -1,5 +1,5 @@
 import axios from "./axios";
-type profileResponse = {
+export type profileResponse = {
   id: number;
   name: string;
   phoneNumber: string;

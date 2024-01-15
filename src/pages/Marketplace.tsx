@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
 import { fetchProfile } from "../api/fetching.apis";
-import useAuth from "../hooks/useAuth";
+import { useAuth } from "../hooks/useAuth";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Logout from "./Logout";
@@ -10,9 +10,9 @@ export default function Marketplace() {
   useEffect(() => {
     async function startFetching() {
       try {
-        await fetchProfile();
+        const response = await fetchProfile();
         if (!ignore) {
-          setAuth(true);
+          setAuth(response);
         }
       } catch (err: unknown) {
         if (err instanceof AxiosError) {
