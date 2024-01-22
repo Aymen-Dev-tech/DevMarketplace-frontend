@@ -7,11 +7,11 @@ type Props = {
 const RequireAuth = ({ allowedRole }: Props) => {
   const { auth } = useAuth();
   const location = useLocation();
-  return allowedRole == "both" && auth?.id !== 0 ? (
+  return allowedRole == "both" && auth.id !== 0 ? (
     <Outlet />
-  ) : allowedRole == "seller" && auth?.Seller ? (
+  ) : allowedRole == "seller" && auth.Seller ? (
     <Outlet />
-  ) : auth?.Buyer ? (
+  ) : auth.Buyer ? (
     <Navigate to="/unauth" state={{ from: location }} replace />
   ) : (
     <Navigate to="/login" state={{ from: location }} replace />

@@ -12,10 +12,8 @@ export default function PresistLogin() {
       try {
         const data = await fetchProfile();
         console.log("<PRESIST>: i recieved profile: ", data);
-        if (!ignore) {
-          setAuth(data);
-          console.log("<PRESIST>: updating the auth state: ", auth);
-        }
+        setAuth(data);
+        console.log("<PRESIST>: updating the auth state: ", auth);
       } catch (err: unknown) {
         if (err instanceof AxiosError) {
           console.log("<PRESIST>: err", err);
@@ -26,13 +24,9 @@ export default function PresistLogin() {
         setIsLoading(false);
       }
     };
-    let ignore = false;
     //run only when the auth state resetted and the user still posses a valid token
     auth.id == 0 ? verifyCookie() : setIsLoading(false);
-    return () => {
-      ignore = true;
-    };
-  }, [auth, setAuth]);
+  }, []);
 
   return <div>{isLoading ? <p> Loading... </p> : <Outlet />}</div>;
 }

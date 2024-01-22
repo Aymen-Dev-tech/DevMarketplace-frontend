@@ -6,9 +6,12 @@ import RequireAuth from "./components/RequireAuth";
 import PresistLogin from "./components/PresistLogin";
 import Marketplace from "./pages/Marketplace";
 import Landing from "./pages/Landing";
-import SellerSpace from "./pages/SellerDashboard";
 import Unauth from "./pages/Unauth";
 import NotFound from "./pages/NotFound";
+import DashboardMain from "./pages/DashboardMain";
+import SidebarLayout from "./components/SidebarLayout";
+import AddProject from "./pages/AddProject";
+
 
 function App() {
   return (
@@ -23,10 +26,14 @@ function App() {
           <Route path="/profile" element={<Profile />} />
         </Route>
         <Route element={<RequireAuth allowedRole="seller" />}>
-          <Route path="/seller-dashboard" element={<SellerSpace />} />
+          <Route path="/dashboard" element={<SidebarLayout />}>
+            <Route index element={<DashboardMain />} />
+            <Route path="add-project" element={<AddProject />} />
+            <Route path="profile" element={<Profile />} />
+          </Route>
         </Route>
       </Route>
-      <Route path="*" element={<NotFound/>}/>
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
