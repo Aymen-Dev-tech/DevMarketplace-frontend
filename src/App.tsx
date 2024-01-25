@@ -11,7 +11,7 @@ import NotFound from "./pages/NotFound";
 import DashboardMain from "./pages/DashboardMain";
 import SidebarLayout from "./components/SidebarLayout";
 import AddProject from "./pages/AddProject";
-
+import ProjectDetails from "./pages/ProjectDetails";
 
 function App() {
   return (
@@ -23,6 +23,7 @@ function App() {
       <Route element={<PresistLogin />}>
         <Route element={<RequireAuth allowedRole="both" />}>
           <Route path="/marketplace" element={<Marketplace />} />
+          <Route path="/project/:id" element={<ProjectDetails />} />
           <Route path="/profile" element={<Profile />} />
         </Route>
         <Route element={<RequireAuth allowedRole="seller" />}>

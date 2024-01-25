@@ -12,11 +12,18 @@ export type profileResponse = {
     id: number;
   };
 };
+export type User = {
+  name: string;
+  profilePicture: string;
+};
 export type productsResponse = {
   id: number;
   name: string;
+  description: string;
   price: number;
   isSold: boolean;
+  DamoURL?: string;
+  Seller: { user: User };
   ProductPicture: { url: string }[];
 };
 
@@ -92,5 +99,12 @@ export const fetchingImageAsStream = async (url: string): Promise<any> => {
   const { data } = await axios.get(`/products/picture/${url}`, {
     responseType: "arraybuffer",
   });
+  return data;
+};
+
+export const productDetails = async (
+  id: string | undefined
+): Promise<productsResponse> => {
+  const { data } = await axios.get(`/products/${id}`);
   return data;
 };
