@@ -17,6 +17,7 @@ export type productsResponse = {
   name: string;
   price: number;
   isSold: boolean;
+  ProductPicture: { url: string }[];
 };
 
 export type statResponse = {
@@ -37,6 +38,16 @@ export type techNamesResponsType = {
     name: string;
   };
 };
+
+export type Suggestions = {
+  id: number;
+  name: string;
+};
+
+export interface Product extends Suggestions {
+  price: number;
+  ProductPicture: { url: string };
+}
 
 export const fetchProfile = async (): Promise<profileResponse> => {
   const response = await axios.get("/users/profile");
@@ -63,4 +74,23 @@ export const techNamesResponse = async (
 ): Promise<techNamesResponsType[] | []> => {
   const response = await axios.get("/products/tech", { params: { type } });
   return response.data;
+};
+
+export const fetchingSuggestionsRes = async (
+  value: string
+): Promise<Suggestions[] | []> => {
+  const { data } = await axios.get("/products/search", { params: { value } });
+  return data;
+};
+
+// export const fetchProductsRes = async (): Promise<productsResponse[]> => {
+//   const { data } = await axios.get("/products");
+//   return data;
+// };
+
+export const fetchingImageAsStream = async (url: string): Promise<any> => {
+  const { data } = await axios.get(`/products/picture/${url}`, {
+    responseType: "arraybuffer",
+  });
+  return data;
 };
