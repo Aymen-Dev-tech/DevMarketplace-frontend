@@ -15,6 +15,7 @@ type ProfileResponse = {
   Seller?:
     | {
         id: number;
+        exp: string;
       }
     | undefined;
   Buyer?:

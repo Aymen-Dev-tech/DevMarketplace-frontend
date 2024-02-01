@@ -21,8 +21,9 @@ export default function StatCard({
       sx={{
         px: 3,
         py: 5,
-        borderRadius: 2,
+        borderRadius: 3,
         flexGrow: "1",
+        boxShadow: "none"
       }}
     >
       {icon && <Box sx={{ width: 64, height: 64 }}>{icon}</Box>}

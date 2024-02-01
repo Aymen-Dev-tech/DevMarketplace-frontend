@@ -12,20 +12,44 @@ import Popover from "@mui/material/Popover";
 import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { useNavigate } from "react-router-dom";
+import Checkbox from "@mui/material/Checkbox";
 
 type productsListProp = {
-  products: productsResponse[];
+  products: Partial<productsResponse>[];
+  onChange: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    position: number,
+    projectId: number
+  ) => Promise<void>;
+  onClick: (index: number) => void;
 };
-export default function ProductsTable({ products }: productsListProp) {
+export default function ProductsTable({
+  products,
+  onChange,
+  onClick,
+}: productsListProp) {
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(5);
-  const [open, setOpen] = useState(null);
-
-  const handleOpenMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setOpen(event.currentTarget);
+  const [anchorElArray, setAnchorElArray] = useState(
+    Array(products.length).fill(null)
+  );
+  const navigate = useNavigate();
+  const handleOpenMenu = (
+    event: React.MouseEvent<HTMLButtonElement>,
+    index: number
+  ) => {
+    const newAnchorElArray = [...anchorElArray];
+    newAnchorElArray[index] = event.currentTarget;
+    setAnchorElArray(newAnchorElArray);
   };
-  const handleCloseMenu = () => {
-    setOpen(null);
+  const handleCloseMenu = (index: number) => {
+    const newAnchorElArray = [...anchorElArray];
+    newAnchorElArray[index] = null;
+    setAnchorElArray(newAnchorElArray);
+  };
+  const handleNav = (selectedProductID: number | undefined) => {
+    navigate(`/dashboard/edit-project/${selectedProductID}`);
   };
   const handleChangePage = (
     event: React.MouseEvent<HTMLButtonElement> | null,
@@ -43,23 +67,29 @@ export default function ProductsTable({ products }: productsListProp) {
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, products.length - page * rowsPerPage);
   return (
-    <TableContainer component={Paper}>
+    <TableContainer
+      component={Paper}
+      sx={{
+        borderRadius: 3,
+        boxShadow: "none"
+      }}
+    >
       <Table sx={{ minWidth: 500 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell colSpan={4}>Selling Products</TableCell>
+            <TableCell colSpan={4}>Selling Projects</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Name</TableCell>
             <TableCell align="right">Price</TableCell>
-            <TableCell align="right">Status</TableCell>
+            <TableCell align="right">Sold</TableCell>
             <TableCell align="right"></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {products
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            .map((product) => {
+            .map((product, index) => {
               return (
                 <TableRow
                   key={product.id}
@@ -70,30 +100,50 @@ export default function ProductsTable({ products }: productsListProp) {
                   </TableCell>
                   <TableCell align="right">{product.price}</TableCell>
                   <TableCell align="right">
-                    {product.isSold ? "Sold" : "in Stock"}
+                    {/* {product.isSold ? "Sold" : "in Stock"} */}
+                    <Checkbox
+                      inputProps={{ "aria-label": "controlled" }}
+                      checked={product.isSold}
+                      disabled={product.isSold}
+                      onChange={(event) => onChange(event, index, product.id)}
+                    />
                   </TableCell>
                   <TableCell align="right">
                     <IconButton
-                      onClick={handleOpenMenu}
+                      id="icon-button"
+                      onClick={(event) => handleOpenMenu(event, index)}
                       color="primary"
                       aria-label="add to shopping cart"
                     >
                       <MoreVertIcon />
                     </IconButton>
                     <Popover
-                      open={!!open}
-                      anchorEl={open}
-                      onClose={handleCloseMenu}
+                      id="popover"
+                      open={!!anchorElArray[index]}
+                      anchorEl={anchorElArray[index]}
+                      onClose={() => handleCloseMenu(index)}
                       anchorOrigin={{ vertical: "top", horizontal: "left" }}
                       transformOrigin={{
                         vertical: "top",
                         horizontal: "right",
                       }}
                     >
-                      <MenuItem onClick={handleCloseMenu}>Edit</MenuItem>
+                      <MenuItem
+                        id="edit"
+                        onClick={() => {
+                          handleCloseMenu(index);
+                          handleNav(product?.id);
+                        }}
+                      >
+                        Edit
+                      </MenuItem>
 
                       <MenuItem
-                        onClick={handleCloseMenu}
+                        id="delete"
+                        onClick={() => {
+                          handleCloseMenu(index);
+                          onClick(index);
+                        }}
                         sx={{ color: "error.main" }}
                       >
                         Delete
@@ -105,7 +155,7 @@ export default function ProductsTable({ products }: productsListProp) {
             })}
           {emptyRows > 0 && (
             <TableRow style={{ height: 53 * emptyRows }}>
-              <TableCell colSpan={3} />
+              <TableCell colSpan={4} />
             </TableRow>
           )}
         </TableBody>

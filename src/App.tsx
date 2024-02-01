@@ -12,6 +12,7 @@ import DashboardMain from "./pages/DashboardMain";
 import SidebarLayout from "./components/SidebarLayout";
 import AddProject from "./pages/AddProject";
 import ProjectDetails from "./pages/ProjectDetails";
+import { EditProject } from "./pages/EditProject";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/dashboard" element={<SidebarLayout />}>
             <Route index element={<DashboardMain />} />
             <Route path="add-project" element={<AddProject />} />
+            <Route path="edit-project/:id?" element={<EditProject />} />
             <Route path="profile" element={<Profile />} />
           </Route>
         </Route>

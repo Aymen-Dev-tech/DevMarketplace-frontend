@@ -7,6 +7,7 @@ export type profileResponse = {
   profilePicture: string;
   Seller?: {
     id: number;
+    exp: string;
   };
   Buyer?: {
     id: number;
@@ -108,3 +109,4 @@ export const productDetails = async (
   const { data } = await axios.get(`/products/${id}`);
   return data;
 };
+

@@ -2,20 +2,38 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import { useParams } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
-import { Button } from "@mui/material";
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from "@mui/material";
 import { useEffect, useState } from "react";
 import { productsResponse, productDetails } from "../api/fetching.apis";
 import { AxiosError } from "axios";
+import { useAuth } from "../hooks/useAuth";
+import Profile from "./Profile";
 
 export default function ProjectDetails() {
   const { id } = useParams();
+  const { auth } = useAuth();
   const [product, setProduct] = useState<productsResponse>();
-  const [image, setImage] = useState<string>('');
+  const [image, setImage] = useState<string>("");
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
         const data = await productDetails(id);
-        const urlImage = localStorage.getItem('image');
+        const urlImage = localStorage.getItem("image");
         if (!ignore) {
           setImage(urlImage);
           setProduct(data);
@@ -70,7 +88,39 @@ export default function ProjectDetails() {
           {product?.Seller.user.name}
         </p>
 
-        <Button variant="contained"> Get in touch </Button>
+        <Button variant="contained" onClick={handleClickOpen}>
+          {" "}
+          Get in touch{" "}
+        </Button>
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle>Seller informtion</DialogTitle>
+
+          <DialogContent>
+            <p>
+              {" "}
+              <strong>Email</strong>: {auth.email}{" "}
+            </p>
+            <p>
+              {" "}
+              <strong>Phone Number</strong>: {auth.phoneNumber}{" "}
+            </p>
+            <p>
+              {" "}
+              <strong>Experince</strong>: {auth.Seller.exp}{" "}
+            </p>
+          </DialogContent>
+          {/* <DialogActions>
+            <Button onClick={handleClose}>Disagree</Button>
+            <Button onClick={handleClose} autoFocus>
+              Agree
+            </Button>
+          </DialogActions> */}
+        </Dialog>
       </Box>
       <Stack direction="row" spacing={3}>
         <Box
