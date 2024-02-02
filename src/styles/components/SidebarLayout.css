@@ -1,0 +1,17 @@
+/* .ps-menu-root {
+    color: red !important;
+}
+*/
+.ps-menu-button:hover {
+    background-color: #E0E0E0 !important;
+    border-radius: 40px;
+} 
+.tab {
+    background-color: #FFFFFF;
+    border-radius: 40px;
+    font-weight: bold;
+}
+
+.dis-tab {
+    background-color: black
+}

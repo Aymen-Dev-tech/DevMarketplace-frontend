@@ -1,11 +1,17 @@
 import { Sidebar, Menu, MenuItem, sidebarClasses } from "react-pro-sidebar";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import DashboardNavbar from "./DashboardNavbar";
 import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import PersonIcon from "@mui/icons-material/Person";
+import "../styles/components/SidebarLayout.css";
+import { useEffect } from "react";
 export default function SidebarLayout() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    console.log("current pathname: ", pathname);
+  }, [pathname]);
   return (
     <div
       style={{
@@ -25,6 +31,8 @@ export default function SidebarLayout() {
               [`.${sidebarClasses.container}`]: {
                 backgroundColor: "#E5EAF9",
               },
+              // fontFamily: "Roboto"
+              
             }}
           >
             <Menu
@@ -46,24 +54,32 @@ export default function SidebarLayout() {
               }}
             >
               <MenuItem
+                className={pathname === "/dashboard" ? "tab" : ""}
                 component={<Link to="/dashboard" />}
+                active={pathname === "dashboard"}
                 icon={<SpaceDashboardIcon />}
               >
                 Dashboard
               </MenuItem>
               <MenuItem
+                className={pathname === "/dashboard/add-project" ? "tab" : ""}
                 component={<Link to="/dashboard/add-project" />}
+                active={pathname === "/dashboard/add-project"}
                 icon={<AddBoxIcon />}
               >
                 Add Project
               </MenuItem>
               <MenuItem
+                className={pathname === "/dashboard/edit-project" ? "tab" : ""}
+                active={pathname === "/dashboard/edit-project"}
                 component={<Link to="/dashboard/edit-project" />}
                 icon={<AppRegistrationIcon />}
               >
                 Edit Project
               </MenuItem>
               <MenuItem
+                className={pathname === "/dashboard/profile" ? "tab" : ""}
+                active={pathname === "/dashboard/profile"}
                 component={<Link to="/dashboard/profile" />}
                 icon={<PersonIcon />}
               >

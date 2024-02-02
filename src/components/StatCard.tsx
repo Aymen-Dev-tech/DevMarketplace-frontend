@@ -4,7 +4,7 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 type Prop = {
   title: string;
-  total: number;
+  total: string;
   icon: React.ReactElement;
   color: string;
 };

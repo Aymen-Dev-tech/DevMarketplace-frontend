@@ -71,16 +71,24 @@ export default function ProductsTable({
       component={Paper}
       sx={{
         borderRadius: 3,
-        boxShadow: "none"
+        boxShadow: "none",
       }}
     >
-      <Table sx={{ minWidth: 500 }} aria-label="simple table">
+      <Table
+        sx={{
+          minWidth: 500,
+          "& .MuiTableCell-root": {
+            borderBottom: "none",
+          },
+          "& .MuiTableCell-root.MuiTableCell-head": {
+            borderBottom: "1px solid #EFEFEF",
+          },
+        }}
+        aria-label="simple table"
+      >
         <TableHead>
           <TableRow>
-            <TableCell colSpan={4}>Selling Projects</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Name</TableCell>
+            <TableCell>Project Name</TableCell>
             <TableCell align="right">Price</TableCell>
             <TableCell align="right">Sold</TableCell>
             <TableCell align="right"></TableCell>

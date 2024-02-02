@@ -108,25 +108,25 @@ export default function DashboardMain() {
       >
         <StatCard
           title="Total Sales"
-          total={totalSales}
+          total={`${totalSales.toString()} DZD`}
           icon={<img alt="icon" src="/icons/totalSales.png" />}
           color="success"
         />
         <StatCard
           title="Total Projects"
-          total={totalProducts}
+          total={totalProducts.toString()}
           icon={<img alt="icon" src="/icons/monitor.png" />}
           color="success"
         />
         <StatCard
           title="Sold Projects"
-          total={soldProducts}
+          total={soldProducts.toString()}
           icon={<img alt="icon" src="/icons/sold-projects.png" />}
           color="success"
         />
         <StatCard
           title="Stock Projects"
-          total={stockProducts}
+          total={stockProducts.toString()}
           icon={<img alt="icon" src="/icons/stock-projects.png" />}
           color="success"
         />
