@@ -9,7 +9,7 @@ import Landing from "./pages/Landing";
 import Unauth from "./pages/Unauth";
 import NotFound from "./pages/NotFound";
 import DashboardMain from "./pages/DashboardMain";
-import SidebarLayout from "./components/SidebarLayout";
+import SidebarLayout from "./components/Dashboard/SidebarLayout";
 import AddProject from "./pages/AddProject";
 import ProjectDetails from "./pages/ProjectDetails";
 import { EditProject } from "./pages/EditProject";

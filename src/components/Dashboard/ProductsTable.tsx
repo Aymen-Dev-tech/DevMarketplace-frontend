@@ -5,7 +5,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { productsResponse } from "../api/fetching.apis";
+import { productsResponse } from "../../api/fetching.apis";
 import TablePagination from "@mui/material/TablePagination";
 import { useState } from "react";
 import Popover from "@mui/material/Popover";

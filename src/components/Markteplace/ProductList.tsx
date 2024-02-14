@@ -4,8 +4,8 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import { productsResponse } from "../api/fetching.apis";
-import { urlsType } from "../pages/Marketplace";
+import { productsResponse } from "../../api/fetching.apis";
+import { urlsType } from "../../pages/Marketplace";
 import { useNavigate } from "react-router-dom";
 type propTypes = {
   products: productsResponse[];

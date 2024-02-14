@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import SearchBox from "../components/SearchBox";
+import SearchBox from "../components/Markteplace/SearchBox";
 import Logout from "./Logout";
 import {
   productsResponse,
@@ -10,7 +10,7 @@ import {
 } from "../api/fetching.apis";
 import { AxiosError } from "axios";
 import { Buffer } from "buffer";
-import ProductList from "../components/ProductList";
+import ProductList from "../components/Markteplace/ProductList";
 export type urlsType = {
   url: string;
   id?: number;

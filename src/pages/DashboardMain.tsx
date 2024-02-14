@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
-import ProductsTable from "../components/ProductsTable";
-import StatCard from "../components/StatCard";
+import ProductsTable from "../components/Dashboard/ProductsTable";
+import StatCard from "../components/Dashboard/StatCard";
 import { useEffect, useState } from "react";
 import {
   dashboardStat,

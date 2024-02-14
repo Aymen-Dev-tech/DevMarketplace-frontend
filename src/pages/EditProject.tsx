@@ -1,13 +1,11 @@
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
-import { EditProjectFrom } from "../components/EditProjectFrom";
+import { EditProjectFrom } from "../components/Dashboard/EditProjectFrom";
 import { useEffect, useState } from "react";
 import { productsList, productsResponse } from "../api/fetching.apis";
 import { AxiosError } from "axios";
-import { ProjectDropDown } from "../components/ProjectDropDown";
+import { ProjectDropDown } from "../components/Dashboard/ProjectDropDown";
 import { useParams } from "react-router-dom";
-import FormLabel from "@mui/material/FormLabel";
-import FormControl from "@mui/material/FormControl";
 
 export type selectType = {
   id: number;

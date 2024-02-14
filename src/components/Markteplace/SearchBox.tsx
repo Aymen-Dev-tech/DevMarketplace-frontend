@@ -3,7 +3,7 @@ import Autocomplete, {
   AutocompleteChangeReason,
 } from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import { Suggestions } from "../api/fetching.apis";
+import { Suggestions } from "../../api/fetching.apis";
 
 type propTypes = {
   options: Suggestions[];

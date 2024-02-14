@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import StoreIcon from "@mui/icons-material/Store";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
-import { useAuth } from "../hooks/useAuth";
+import { useAuth } from "../../hooks/useAuth";
 export default function DashboardNavbar() {
   const { auth } = useAuth();
   return (

@@ -1,6 +1,8 @@
+import { useEffect } from "react";
+
 export default function Login() {
-  const handleClick = () => {
+  useEffect(() => {
     window.open("/api/auth/google", "_self");
-  };
-  return <button onClick={handleClick}> login </button>;
+  }, []);
+  return <div> </div>;
 }

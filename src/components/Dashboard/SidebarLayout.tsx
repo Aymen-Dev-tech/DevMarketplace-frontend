@@ -5,7 +5,7 @@ import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import PersonIcon from "@mui/icons-material/Person";
-import "../styles/components/SidebarLayout.css";
+import "../../styles/components/SidebarLayout.css";
 import { useEffect } from "react";
 export default function SidebarLayout() {
   const { pathname } = useLocation();

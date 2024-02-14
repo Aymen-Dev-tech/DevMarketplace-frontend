@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { productDetails, productsResponse } from "../api/fetching.apis";
+import { productDetails, productsResponse } from "../../api/fetching.apis";
 import { AxiosError } from "axios";
 import Button from "@mui/material/Button";
 import FormHelperText from "@mui/material/FormHelperText";
@@ -8,8 +8,8 @@ import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import FormLabel from "@mui/material/FormLabel";
 import Textarea from "./Textarea";
-import { updateProduct } from "../api/post.apis";
-import { IFormInputes } from "../pages/AddProject";
+import { updateProduct } from "../../api/post.apis";
+import { IFormInputes } from "../../pages/AddProject";
 
 export const EditProjectFrom = ({
   selectedProject,

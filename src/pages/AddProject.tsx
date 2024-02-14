@@ -10,7 +10,7 @@ import {
 } from "../api/fetching.apis";
 import { AxiosError } from "axios";
 import { Box, Button, FormControl, FormHelperText, Paper } from "@mui/material";
-import Textarea from "../components/Textarea";
+import Textarea from "../components/Dashboard/Textarea";
 import { SubmitHandler, useForm, Controller } from "react-hook-form";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import { createProduct } from "../api/post.apis";
