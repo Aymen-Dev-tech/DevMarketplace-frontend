@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import SearchBox from "../components/Markteplace/SearchBox";
-import Logout from "./Logout";
 import {
   productsResponse,
   Suggestions,
@@ -11,6 +10,10 @@ import {
 import { AxiosError } from "axios";
 import { Buffer } from "buffer";
 import ProductList from "../components/Markteplace/ProductList";
+import Box from "@mui/material/Box";
+import { LandingNavbar } from "../components/Landing/LandingNavbar";
+import { Typography } from "@mui/material";
+
 export type urlsType = {
   url: string;
   id?: number;
@@ -74,9 +77,32 @@ export default function Marketplace() {
   }, [inputValue]);
 
   return (
-    <>
-      <div>Marketplace</div>
-      <br />
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: "50px",
+      }}
+    >
+      <Box sx={{ width: "1255px", height: "96px", marginTop: "10rem" }}>
+        <Typography
+          sx={{
+            fontStyle: "normal",
+            fontWeight: 600,
+            fontSize: "40px",
+            lineHeight: "48px",
+            textAlign: "center",
+          }}
+        >
+          Elevate your online presence with our top-notch digital products:
+          websites, platforms, scripts, and apps
+        </Typography>
+      </Box>
+
+      <LandingNavbar />
+
       <SearchBox
         options={options}
         inputValue={inputValue}
@@ -88,9 +114,7 @@ export default function Marketplace() {
         }}
         getOptionLabel={(option) => (option.name ? option.name : "")}
       />
-      <br />
       <ProductList products={products} images={images} searchValue={value} />
-      <Logout />
-    </>
+    </Box>
   );
 }

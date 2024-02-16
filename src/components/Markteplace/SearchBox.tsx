@@ -2,6 +2,7 @@ import Autocomplete, {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
 } from "@mui/material/Autocomplete";
+import SearchIcon from '@mui/icons-material/Search';
 import TextField from "@mui/material/TextField";
 import { Suggestions } from "../../api/fetching.apis";
 
@@ -21,6 +22,7 @@ export default function SearchBox({
 }: propTypes) {
   return (
     <Autocomplete
+      sx={{width: "500px"}}
       freeSolo
       id="free-solo-2-demo"
       disableClearable
@@ -41,6 +43,9 @@ export default function SearchBox({
           InputProps={{
             ...params.InputProps,
             type: "search",
+            endAdornment: (
+              <SearchIcon />
+            )
           }}
         />
       )}

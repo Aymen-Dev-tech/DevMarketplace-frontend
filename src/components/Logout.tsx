@@ -1,6 +1,8 @@
 import { AxiosError } from "axios";
 import axios from "../api/axios";
 import { useNavigate } from "react-router-dom";
+import IconButton from "@mui/material/IconButton";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 export default function Logout() {
   const navigate = useNavigate();
@@ -10,7 +12,9 @@ export default function Logout() {
       await axios.get("/auth/logout", {
         withCredentials: true,
       });
-      navigate("/", { replace: true });
+      navigate("/login", { replace: true });
+      console.log("navigate succ");
+      
     } catch (err) {
       if (err instanceof AxiosError) {
         if (!err?.response) {
@@ -25,5 +29,9 @@ export default function Logout() {
       }
     }
   };
-  return <button onClick={logout}>Logout</button>;
+  return (
+    <IconButton onClick={() => logout()}>
+      <LogoutIcon sx={{ color: "black" }} />
+    </IconButton>
+  );
 }

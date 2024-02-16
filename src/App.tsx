@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import Login from "./pages/Login";
+import Login from "./components/Login";
 import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
 import RequireAuth from "./components/RequireAuth";
@@ -17,11 +17,11 @@ import { EditProject } from "./pages/EditProject";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Landing />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/unauth" element={<Unauth />} />
       <Route element={<PresistLogin />}>
+        <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/unauth" element={<Unauth />} />
         <Route element={<RequireAuth allowedRole="both" />}>
           <Route path="/marketplace" element={<Marketplace />} />
           <Route path="/project/:id" element={<ProjectDetails />} />

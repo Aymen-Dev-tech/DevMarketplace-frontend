@@ -16,6 +16,8 @@ export type profileResponse = {
 export type User = {
   name: string;
   profilePicture: string;
+  email: string;
+  phoneNumber: string;
 };
 export type productsResponse = {
   id: number;
@@ -24,7 +26,7 @@ export type productsResponse = {
   price: number;
   isSold: boolean;
   DamoURL?: string;
-  Seller: { user: User };
+  Seller: { user: User; exp: string };
   ProductPicture: { url: string }[];
 };
 
@@ -109,4 +111,3 @@ export const productDetails = async (
   const { data } = await axios.get(`/products/${id}`);
   return data;
 };
-
