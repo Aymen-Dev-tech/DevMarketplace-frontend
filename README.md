@@ -1,30 +1,54 @@
-# React + TypeScript + Vite
+# DevMarketplace
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An online platfrom to sell projects (websites, online platforms, scripts, ..etc) 
+This repo covers the frontend, you can find the backend repo [here](https://github.com/Aymen-Dev-tech/DevMarketplace-backend) 
 
-Currently, two official plugins are available:
+## Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+These instructions will get you a copy of the project up and running on your local machine.
 
-## Expanding the ESLint configuration
+### Prerequisites
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+If you are planing to run this project localy you need:
 
-- Configure the top-level `parserOptions` property like this:
+```
+Node.js: At least v18
+Vite
+Google console account
+```
+Setup a .env file at the root level of your projet and specify these variables: 
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```
+VITE_BASE_URL
+```
+### Running
+
+Clone the repository: 
+```
+$ git clone https://github.com/Aymen-Dev-tech/DevMarketplace-frontend.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Navigate to the project directory: 
+
+```
+$ cd DevMarketplace-frontend
+```
+Start the server: 
+```
+$ npm i && npm run dev
+```
+## Built With
+
+- [Node.js](https://nodejs.org/en) - JavaScript runtime environment
+- [React.js](https://react.dev/) - The library for web and native user interfaces
+- [Passport.js](https://www.passportjs.org/) - Used to authentication
+- [React Hook Form](https://react-hook-form.com/) - Performant, flexible and extensible forms with easy-to-use validation.
+
+## Author
+
+- **Aymen Bounnah** - [Aymen-Dev-tech](https://github.com/Aymen-Dev-tech)
+
+
+
+
+
