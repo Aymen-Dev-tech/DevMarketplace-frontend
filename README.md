@@ -41,7 +41,6 @@ $ npm i && npm run dev
 
 - [Node.js](https://nodejs.org/en) - JavaScript runtime environment
 - [React.js](https://react.dev/) - The library for web and native user interfaces
-- [Passport.js](https://www.passportjs.org/) - Used to authentication
 - [React Hook Form](https://react-hook-form.com/) - Performant, flexible and extensible forms with easy-to-use validation.
 
 ## Author
