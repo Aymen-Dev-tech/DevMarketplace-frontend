@@ -3,6 +3,8 @@
 An online platfrom to sell projects (websites, online platforms, scripts, ..etc) 
 This repo covers the frontend, you can find the backend repo [here](https://github.com/Aymen-Dev-tech/DevMarketplace-backend) 
 
+![screenshots](/public/screenshots/DevMarketplace.png)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine.
