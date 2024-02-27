@@ -80,7 +80,7 @@ export const HeroSection = () => {
             }}
           >
             <Link
-              href={`${import.meta.env.VITE_BASE_URL}/signup`}
+              href={`${location.protocol + "//" + location.host}/signup`}
               underline="none"
               sx={{
                 color: "#fff",

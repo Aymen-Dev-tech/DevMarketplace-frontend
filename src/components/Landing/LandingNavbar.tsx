@@ -9,11 +9,15 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import Logout from "../Logout";
 import { IconButton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+const serverBaseUrl = location.protocol + "//" + location.host;
 const links = [
-  { name: "Home", href: import.meta.env.BASE_URL },
-  { name: "Products", href: `${import.meta.env.VITE_BASE_URL}/marketplace` },
-  { name: "Pricing", href: `${import.meta.env.BASE_URL}` },
-  { name: "Contact", href: `${import.meta.env.BASE_URL}` },
+  { name: "Home", href: serverBaseUrl },
+  {
+    name: "Products",
+    href: `${serverBaseUrl}/marketplace`,
+  },
+  { name: "Pricing", href: serverBaseUrl },
+  { name: "Contact", href: serverBaseUrl },
 ];
 export const LandingNavbar = () => {
   const { auth } = useAuth();
@@ -118,7 +122,7 @@ export const LandingNavbar = () => {
                 }}
               >
                 <Link
-                  href={`${import.meta.env.VITE_BASE_URL}/signup`}
+                  href={`${serverBaseUrl}/signup`}
                   underline="none"
                   sx={{
                     color: "#fff",

@@ -76,7 +76,7 @@ export const CTA = () => {
               color: "#FFFFFF",
             }}
             underline="none"
-            href={`${import.meta.env.VITE_BASE_URL}/signup`}
+            href={`${location.protocol + "//" + location.host}/signup`}
           >
             Try now
           </Link>
