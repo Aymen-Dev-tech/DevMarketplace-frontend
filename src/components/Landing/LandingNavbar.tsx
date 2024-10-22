@@ -9,7 +9,7 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import Logout from "../Logout";
 import { IconButton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-const serverBaseUrl = location.protocol + "//" + location.host;
+const serverBaseUrl = import.meta.env.BASE_URL;
 const links = [
   { name: "Home", href: serverBaseUrl },
   {
@@ -24,7 +24,6 @@ export const LandingNavbar = () => {
   const navigate = useNavigate();
   //remove links from the navbar if the current user logged-in
   if (auth.id !== 0) links.splice(0, links.length);
-
   return (
     <AppBar
       component="nav"

@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { productsResponse, productDetails } from "../api/fetching.apis";
 import { AxiosError } from "axios";
 import { LandingNavbar } from "../components/Landing/LandingNavbar";
+import { useNavigate } from "react-router-dom";
 import Profile from "./Profile";
 
 export default function ProjectDetails() {
@@ -20,7 +21,27 @@ export default function ProjectDetails() {
   const [product, setProduct] = useState<productsResponse>();
   const [image, setImage] = useState<string>("");
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
+  const handleOrder = () => {
+    const options = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_SECRET_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: `{"amount":${product?.price},"currency":"dzd","success_url":"http://localhost:5173/payments/success"}`,
+    };
+
+    fetch("https://pay.chargily.net/test/api/v2/checkouts", options)
+      .then((response) => response.json())
+      .then((response) => {
+        window.location.href = response?.checkout_url;
+      })
+      .catch((err) => console.error(err));
+
+    // navigate("navigate to the checkout url");
+  };
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -90,10 +111,17 @@ export default function ProjectDetails() {
             {product?.Seller.user.name}
           </p>
 
-          <Button variant="contained" onClick={handleClickOpen}>
-            {" "}
-            Get in touch{" "}
-          </Button>
+          <Stack direction="row" spacing={2}>
+            <Button variant="outlined" onClick={handleClickOpen}>
+              Get in touch
+            </Button>
+            {!product?.isSold && (
+              <Button variant="contained" onClick={handleOrder}>
+                Order Now
+              </Button>
+            )}
+          </Stack>
+
           <Dialog
             open={open}
             onClose={handleClose}
@@ -143,6 +171,13 @@ export default function ProjectDetails() {
             >
               <h3 style={{ marginTop: "auto" }}> {product?.name} </h3>
               <h2> {product?.price} DA </h2>
+              <h3>
+                {product?.isSold ? (
+                  <text style={{ color: "red" }}> Not Available </text>
+                ) : (
+                  <text style={{ color: "green" }}> Available </text>
+                )}
+              </h3>
               <h4 style={{ marginBottom: "auto", color: "#5B5B5B" }}>
                 {product?.description}
               </h4>

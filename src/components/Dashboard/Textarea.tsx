@@ -1,6 +1,6 @@
-import { TextareaAutosize as BaseTextareaAutosize } from "@mui/base/TextareaAutosize";
+import { TextareaAutosize as BaseTextareaAutosize } from "@mui/base";
 import { styled } from "@mui/system";
-export default function Textarea({name, register, validationSchema}) {
+export default function Textarea({ name, register, validationSchema }) {
   const blue = {
     100: "#DAECFF",
     200: "#b6daff",

@@ -13,6 +13,7 @@ import SidebarLayout from "./components/Dashboard/SidebarLayout";
 import AddProject from "./pages/AddProject";
 import ProjectDetails from "./pages/ProjectDetails";
 import { EditProject } from "./pages/EditProject";
+import PaymentSuccess from "./pages/PaymentSuccess";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/unauth" element={<Unauth />} />
+        <Route path="/payments/success" element={<PaymentSuccess />} />
         <Route element={<RequireAuth allowedRole="both" />}>
           <Route path="/marketplace" element={<Marketplace />} />
           <Route path="/project/:id" element={<ProjectDetails />} />
