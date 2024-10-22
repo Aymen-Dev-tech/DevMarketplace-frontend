@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 export default function Login() {
   useEffect(() => {
-    window.open("/api/auth/google", "_self");
+    window.open(`${import.meta.env.VITE_SERVER}/auth/google`, "_self");
   }, []);
 
   return <div> </div>;

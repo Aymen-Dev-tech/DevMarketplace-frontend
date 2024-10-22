@@ -102,7 +102,7 @@ export const LandingNavbar = () => {
           ) : (
             <>
               <Link
-                href="/api/auth/google"
+                href={`/${import.meta.env.VITE_SERVER}/auth/google`}
                 underline="none"
                 sx={{ color: "#23A6F0" }}
               >
@@ -121,7 +121,7 @@ export const LandingNavbar = () => {
                 }}
               >
                 <Link
-                  href={`${serverBaseUrl}/signup`}
+                  href={`http://localhost:5173/signup`}
                   underline="none"
                   sx={{
                     color: "#fff",

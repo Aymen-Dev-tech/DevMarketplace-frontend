@@ -48,12 +48,12 @@ export default function Signup() {
     console.log(data);
     if (watchRole === "seller") {
       window.open(
-        `/api/auth/google?info[phoneNumber]=${data.phoneNumber}&info[role]=${data.role}&info[exp]=${data.exp}`,
+        `/${import.meta.env.VITE_SERVER}/auth/google?info[phoneNumber]=${data.phoneNumber}&info[role]=${data.role}&info[exp]=${data.exp}`,
         "_self"
       );
     } else {
       window.open(
-        `/api/auth/google?info[phoneNumber]=${data.phoneNumber}&info[role]=${data.role}`,
+        `/${import.meta.env.VITE_SERVER}/auth/google?info[phoneNumber]=${data.phoneNumber}&info[role]=${data.role}`,
         "_self"
       );
     }
