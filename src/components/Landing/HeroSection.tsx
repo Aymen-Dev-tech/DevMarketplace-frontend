@@ -80,7 +80,7 @@ export const HeroSection = () => {
             }}
           >
             <Link
-              href={`${location.protocol + "//" + location.host}/signup`}
+              href="/signup"
               underline="none"
               sx={{
                 color: "#fff",

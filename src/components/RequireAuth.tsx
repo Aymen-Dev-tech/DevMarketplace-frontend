@@ -14,7 +14,7 @@ const RequireAuth = ({ allowedRole }: Props) => {
   ) : auth.Buyer ? (
     <Navigate to="/unauth" state={{ from: location }} replace />
   ) : (
-    <Navigate to="/login" state={{ from: location }} replace />
+    <Navigate to="/signup" state={{ from: location }} replace />
   );
 };
 
